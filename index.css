@@ -1,0 +1,86 @@
+* {
+    /* color: red; */
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+    /* background-color: black !important; */
+    /* background-color:#ADD8E6 !important; */
+    /* background-color:#87CEEB !important; */
+    /* background-color:#00BFFF !important; */
+    /* background-color:#1E90FF !important; */
+    /* background-color:#4682B4 !important; */
+    /* background-color:#6495ED !important; */
+    /* background-color:#7B68EE !important; */
+    /* background-color:#4169E1 !important; */
+    /* background-color:#0000CD !important; */
+    background-color: #00008B !important;
+
+    color: white !important;
+}
+
+/* .column{
+    border: solid 1px;
+} */
+
+.column-content {
+    border: solid 1px;
+    border-radius: 5%;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    background-color: whitesmoke;
+    color: black;
+}
+
+.task-card {
+    border: solid 1px !important;
+    border-color: #00008B !important;
+    margin-top: 15px;
+}
+
+#todo-container>div>button {
+    width: 100%;
+}
+
+
+#create-task-form-container {
+    /* background-color: aqua; */
+    color: white;
+
+    /* background-color: black !important; */
+    /* background-color:#ADD8E6 !important; */
+    /* background-color:#87CEEB !important; */
+    background-color:#00BFFF !important;
+    /* background-color:#1E90FF !important; */
+    /* background-color:#4682B4 !important; */
+    /* background-color:#6495ED !important; */
+    /* background-color:#7B68EE !important; */
+    /* background-color:#4169E1 !important; */
+    /* background-color:#0000CD !important; */
+
+    padding: 20px 30px 20px 30px;
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+
+}
+
+.inactive{
+    display: none;
+}
+
+#remove-form-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    /* background-color: red; */
+    /* Optional, for visual purposes */
+    /* color: white; */
+    /* Optional, for visual purposes */
+    border: none;
+    cursor: pointer;
+}
