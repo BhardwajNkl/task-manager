@@ -70,7 +70,7 @@ body {
 }
 
 .inactive{
-    display: none;
+    display: none !important;
 }
 
 #remove-form-button {
@@ -83,4 +83,25 @@ body {
     /* Optional, for visual purposes */
     border: none;
     cursor: pointer;
+}
+
+#task-action-div{
+    display: flex;
+    /* background-color: yellow; */
+}
+
+#task-action-button-container{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 10px;
+}
+
+.task-action-button{
+    padding: 2px;
+    margin: 2px;
+    background-color: #00008B;
+    color: white;
+    border: none;
+    border-radius: 4%;
 }

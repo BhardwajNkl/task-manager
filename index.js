@@ -68,6 +68,11 @@ function appendTaskInContainer(taskCardElement, taskContainerElementId) {
     taskContainerElement.appendChild(taskCardElement);
 }
 
+function removeTaskFromContainer(taskCardElement, taskContainerElementId){
+    const taskContainerElement = document.querySelector("#" + taskContainerElementId);
+    taskContainerElement.removeChild(taskCardElement);
+}
+
 function toggleTaskFormVisibility(){
     const createTaskFormContainer = document.getElementById("create-task-form-container");
     if(createTaskFormContainer.classList.contains("inactive")){
@@ -86,6 +91,35 @@ function updateTaskStatus(taskTitle, newStatus){
             return task;
         }
     });
+    localStorage.setItem("task_list",JSON.stringify(tasks));
+}
+
+function deleteTask(taskCardElement, taskTitle){
+    // remove from dom: task status may have changed, so lets first get the task
+    const task = tasks.find(task=>task.title===taskTitle);
+    switch (task.status) {
+        case "todo": {
+            removeTaskFromContainer(taskCardElement, "todo-container");
+            break;
+        }
+        case "doing": {
+            removeTaskFromContainer(taskCardElement, "doing-container");
+            break;
+        }
+        case "done": {
+            removeTaskFromContainer(taskCardElement, "done-container");
+            break;
+        }
+
+        default: {
+            removeTaskFromContainer(taskCardElement, "todo-container");
+        }
+    }
+
+
+
+    // remove from tasks array
+    tasks = tasks.filter(task=>task.title!==taskTitle);
     localStorage.setItem("task_list",JSON.stringify(tasks));
 }
 
@@ -108,6 +142,12 @@ function showTaskOnPage(task){
 
     newCard.innerHTML = `<div class="card-body">
                         <h5 class="card-title">${task.title}</h5>
+                        <div id="task-action-div">
+                        <div><i id="task-action-toggle-button" class="fa-solid fa-ellipsis-vertical"></i></div>
+                        <div id="task-action-button-container" class="inactive">
+                            
+                        </div>
+                        </div>
                         <p class="card-text">${task.description}</p>
                         <span>assignee:${task.assignee}</span>
                         <span>due date: ${shortDueDate}</span>
@@ -117,8 +157,48 @@ function showTaskOnPage(task){
                         
                     </div>`;
 
+    // Create the edit button
+const editButton = document.createElement("button");
+editButton.className = "task-action-button";
+// editButton.dataset.taskId = task.title;
+editButton.textContent = "edit";
+editButton.addEventListener("click", function() {
+    console.log("Edit button clicked for task:", task.title);
+    // Add your edit logic here
+});
+
+// Create the delete button
+const deleteButton = document.createElement("button");
+deleteButton.className = "task-action-button";
+deleteButton.textContent = "delete";
+deleteButton.addEventListener("click", function() {
+    console.log("Delete button clicked for task:", task.title);
+    // Add your delete logic here
+    deleteTask(newCard, task.title);
+    alert("deleted!")
+});
+
+// Append the buttons to the button container
+const buttonContainer = newCard.querySelector("#task-action-button-container");
+buttonContainer.appendChild(editButton);
+buttonContainer.appendChild(deleteButton);
+
+// event listener on task-action toggle
+const taskActionToggleButton = newCard.querySelector("#task-action-toggle-button");
+taskActionToggleButton.addEventListener("click",()=>{
+    console.log("inside toggle");
+    const taskActionButtonContainer = newCard.querySelector("#task-action-button-container");
+    if(taskActionButtonContainer.classList.contains("inactive")){
+        console.log("inside if")
+        taskActionButtonContainer.classList.remove("inactive");
+    } else{
+        console.log("inside else")
+        taskActionButtonContainer.classList.add("inactive");
+    }
+})
+
     /**
-     * testing add event listener right here
+     * add event listener for drag
      */
     newCard.addEventListener("dragstart", (event)=>{
         selected = event.target;
