@@ -34,7 +34,7 @@
 //         status: "doing"
 //     }
 // ]
-
+let selected=null; // global variable to keep track of selected drag element
 let tasks = [];
 let tasksFromStorage = localStorage.getItem("task_list");
 if(tasksFromStorage){
@@ -121,40 +121,8 @@ function showTaskOnPage(task){
      * testing add event listener right here
      */
     newCard.addEventListener("dragstart", (event)=>{
-        let selected = event.target;
-
-        // we need to dragover and drop on the doing-container or done-container. so add listeners on both.
-        const doingContainer = document.getElementById("doing-container");
-        doingContainer.addEventListener("dragover",(event)=>{
-            event.preventDefault();    
-        });
-
-        doingContainer.addEventListener("drop",(event)=>{
-            // NOTE: UPDATE THE TASK STATUS ACCORDINGLY
-            // get title. using this we will update the object in the tasks array.
-            let titleElement = selected.querySelector("div h5");
-            const title = titleElement.innerHTML; // WHEN WE DRAG-DROP FOR 2ND TIME, WHY AT THIS LINE selected = null?
-            updateTaskStatus(title,"doing");
-            doingContainer.appendChild(selected);
-            selected = null;
-        });
-
-
-        const doneContainer = document.getElementById("done-container");
-        doneContainer.addEventListener("dragover",(event)=>{
-            event.preventDefault();
-        });
-
-        doneContainer.addEventListener("drop",(event)=>{
-            // NOTE: UPDATE THE TASK STATUS ACCORDINGLY
-            // get title. using this we will update the object in the tasks array.
-            let titleElement = selected.querySelector("div h5");
-            const title = titleElement.innerHTML; // WHEN WE DRAG-DROP FOR 2ND TIME, WHY AT THIS LINE selected = null?
-            updateTaskStatus(title, "done");
-            doneContainer.appendChild(selected);
-            selected = null;
-        });
-    })
+        selected = event.target;
+    });
 
     // append this task to respective container
     switch (task.status) {
@@ -176,6 +144,55 @@ function showTaskOnPage(task){
         }
     }
 }
+
+// drag drop
+// we need to dragover and drop on all three: todo-container, doing-container or done-container. so add listeners on both.
+
+const todoContainer = document.getElementById("todo-container");
+todoContainer.addEventListener("dragover",(event)=>{
+    event.preventDefault();    
+});
+
+todoContainer.addEventListener("drop",(event)=>{
+    // NOTE: UPDATE THE TASK STATUS ACCORDINGLY
+    // get title. using this we will update the object in the tasks array.
+    let titleElement = selected.querySelector("div h5");
+    const title = titleElement.innerHTML; // WHEN WE DRAG-DROP FOR 2ND TIME, WHY AT THIS LINE selected = null?
+    updateTaskStatus(title,"todo");
+    todoContainer.appendChild(selected);
+    selected = null;
+});
+
+const doingContainer = document.getElementById("doing-container");
+doingContainer.addEventListener("dragover",(event)=>{
+    event.preventDefault();    
+});
+
+doingContainer.addEventListener("drop",(event)=>{
+    // NOTE: UPDATE THE TASK STATUS ACCORDINGLY
+    // get title. using this we will update the object in the tasks array.
+    let titleElement = selected.querySelector("div h5");
+    const title = titleElement.innerHTML;
+    updateTaskStatus(title,"doing");
+    doingContainer.appendChild(selected);
+    selected = null;
+});
+
+
+const doneContainer = document.getElementById("done-container");
+doneContainer.addEventListener("dragover",(event)=>{
+    event.preventDefault();
+});
+
+doneContainer.addEventListener("drop",(event)=>{
+    // NOTE: UPDATE THE TASK STATUS ACCORDINGLY
+    // get title. using this we will update the object in the tasks array.
+    let titleElement = selected.querySelector("div h5");
+    const title = titleElement.innerHTML;
+    updateTaskStatus(title, "done");
+    doneContainer.appendChild(selected);
+    selected = null;
+});
 
 function createTask(task){
     tasks.push(task);
