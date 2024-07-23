@@ -7,6 +7,7 @@
 
 import { loadTasks, updateTaskStatus, createTask } from "./task.js";
 import { showTaskOnPage, toggleTaskFormVisibility } from "./dom_manipulation.js";
+import {paste} from "./cut_paste.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -33,9 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const assignee = form["task-assignee"].value;
         const dueDate = form["task-due-date"].value;
         const priority = form["task-priority"].value;
-    
+
         const newTask = { title, description, assignee, dueDate: new Date(dueDate), priority, status: "todo" };
-    
+
         createTask(newTask);
         showTaskOnPage(newTask);
     });
@@ -91,4 +92,14 @@ document.addEventListener("DOMContentLoaded", () => {
         updateTaskStatus(title, "done");
         doneContainer.appendChild(selected);
     });
+
+    // PASTE BUTTONS EVENT BINDING
+    const pasteButtons = document.querySelectorAll(".task-paste-button");
+    for (const button of pasteButtons) {
+        button.addEventListener("click", () => {
+            // alert(button.getAttribute("id"));
+            const targetContainerId = button.getAttribute("data-paste-container");
+            paste(targetContainerId);
+        });
+    }
 });

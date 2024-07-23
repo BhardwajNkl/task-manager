@@ -1,4 +1,5 @@
 import { deleteTask } from "./task.js";
+import {cut} from "./cut_paste.js";
 
 export function toggleTaskFormVisibility() {
     const createTaskFormContainer = document.getElementById("create-task-form-container");
@@ -79,12 +80,13 @@ export function showTaskOnPage(task) {
                             <div> 
                         </div>`;
 
-    // CREATE EDIT BUTTON
-    const editButton = document.createElement("button");
-    editButton.className = "task-action-button";
-    editButton.textContent = "Edit";
-    editButton.addEventListener("click", function () {
-        console.log("edit on[currently operation not coded]: ", task.title);
+    // CREATE CUT BUTTON
+    const cutButton = document.createElement("button");
+    cutButton.className = "task-action-button";
+    cutButton.textContent = "Cut";
+    cutButton.addEventListener("click", function () {
+        // console.log("cut on[currently operation not coded]: ", task.title);
+        cut(task.title);
     });
 
     // CREATE DELETE BUTTON
@@ -99,7 +101,7 @@ export function showTaskOnPage(task) {
 
     // APPEND THE BUTTONS TO THE BUTTON CONTAINER
     const buttonContainer = newCard.querySelector(".task-action-button-container");
-    buttonContainer.appendChild(editButton);
+    buttonContainer.appendChild(cutButton);
     buttonContainer.appendChild(deleteButton);
 
     // EVENT LISTENER FOR SHOWING/HIDING THE EDIT/DELETE BUTTONS
