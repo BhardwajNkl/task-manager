@@ -85,6 +85,10 @@ body {
 
 }
 
+.highlight {
+    background-color: yellow !important; /* Highlight color */
+}
+
 #todo-container>div>button {
     width: 100%;
 }

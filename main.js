@@ -6,7 +6,7 @@
  */
 
 import { loadTasks, updateTaskStatus, createTask } from "./task.js";
-import { showTaskOnPage, toggleTaskFormVisibility } from "./dom_manipulation.js";
+import { showTaskOnPage, toggleTaskFormVisibility, highlightMatchingTask } from "./dom_manipulation.js";
 import {paste} from "./cut_paste.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -39,6 +39,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         createTask(newTask);
         showTaskOnPage(newTask);
+    });
+
+    // EVENT BINDIN ON SEARCH INPUT
+    document.getElementById("search-task").addEventListener("input",(event)=>{
+        const searchText = event.target.value;
+        highlightMatchingTask(searchText);
     });
 
     // 4. DRAGOVER AND DROP EVENT BINDING ON EACH TASK CONTAINER

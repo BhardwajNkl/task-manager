@@ -73,9 +73,9 @@ export function showTaskOnPage(task) {
                                     </div>
 
                                     <p class="card-text">${task.description}</p>
-                                    <span>assignee:${task.assignee}</span>
-                                    <span>due date: ${shortDueDate}</span>
-                                    <span>priority:${task.priority}</span>
+                                    <span>Assigned To:${task.assignee}</span><br>
+                                    <span>${shortDueDate}</span>
+                                    <span>${task.priority}</span>
                                 </div>
                             <div> 
                         </div>`;
@@ -124,3 +124,21 @@ export function showTaskOnPage(task) {
     appendTaskInContainer(newCard, task.status);
 }
 
+
+export function highlightMatchingTask(searchText){
+    // searching based on title
+    const taskCardElements = document.querySelectorAll(".task-card");
+    taskCardElements.forEach(taskCardElement=>{
+        // get title element
+        const titleElement = taskCardElement.querySelector(".card-title");
+        const title = titleElement.textContent.toLocaleLowerCase();
+        if(searchText.length>0 && title.includes(searchText)){
+            taskCardElement.classList.add("highlight");
+        } else if(searchText.length>0 && !title.includes(searchText)){
+            taskCardElement.classList.remove("highlight");
+        } else{
+            taskCardElement.classList.remove("highlight");
+        }
+    })
+
+}
