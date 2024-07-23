@@ -1,0 +1,5 @@
+TO RUN:
+1. Open the project directory in a terminal and issue the command: npx http-server -p 0
+
+# THE ABOVE STEP IS REQUIRED BECAUSE I HAVE USED JAVASCRIPT MODULER APPROACH.
+# SO THIS CODE CAN NOT BE RENDERED AS NORMAL STATIC WEBSITE. WE NEED A SERVER.
