@@ -141,13 +141,19 @@ function showTaskOnPage(task){
     newCard.classList.add("card", "task-card");
 
     newCard.innerHTML = `<div class="card-body">
-                        <h5 class="card-title">${task.title}</h5>
-                        <div id="task-action-div">
-                        <div><i id="task-action-toggle-button" class="fa-solid fa-ellipsis-vertical"></i></div>
-                        <div id="task-action-button-container" class="inactive">
+                        <div id="task-card-header">
+                            <h5 class="card-title">${task.title}</h5>
+                            <div id="task-action-div">
+                            <div id="task-action-button-container" class="inactive">
+                            </div>
+                                <div>
+                                    <i id="task-action-toggle-button" class="fa-solid fa-ellipsis"></i>
+                                </div>
+                                
+                            </div>
                             
                         </div>
-                        </div>
+
                         <p class="card-text">${task.description}</p>
                         <span>assignee:${task.assignee}</span>
                         <span>due date: ${shortDueDate}</span>
@@ -161,7 +167,7 @@ function showTaskOnPage(task){
 const editButton = document.createElement("button");
 editButton.className = "task-action-button";
 // editButton.dataset.taskId = task.title;
-editButton.textContent = "edit";
+editButton.textContent = "Edit";
 editButton.addEventListener("click", function() {
     console.log("Edit button clicked for task:", task.title);
     // Add your edit logic here
@@ -170,7 +176,7 @@ editButton.addEventListener("click", function() {
 // Create the delete button
 const deleteButton = document.createElement("button");
 deleteButton.className = "task-action-button";
-deleteButton.textContent = "delete";
+deleteButton.textContent = "Delete";
 deleteButton.addEventListener("click", function() {
     console.log("Delete button clicked for task:", task.title);
     // Add your delete logic here

@@ -6,6 +6,7 @@
 }
 
 body {
+    min-height: 100vh;
     /* background-color: black !important; */
     /* background-color:#ADD8E6 !important; */
     /* background-color:#87CEEB !important; */
@@ -16,10 +17,46 @@ body {
     /* background-color:#7B68EE !important; */
     /* background-color:#4169E1 !important; */
     /* background-color:#0000CD !important; */
-    background-color: #00008B !important;
+    /* background-color: #00008B !important; */
+
+
+    /* lets try gradiend colors */
+    /* background-image: linear-gradient(60deg, lightblue, orange); */
+    /* background-image: linear-gradient(60deg, #a1c4fd, #c2e9fb); */
+/* background-image: linear-gradient(60deg, #56ccf2, #2f80ed); */
+/* background-image: linear-gradient(60deg, #ff9a9e, #fad0c4); */
+/* background-image: linear-gradient(60deg, #a8e063, #56ab2f); */
+/* background-image: linear-gradient(60deg, #89f7fe, #66a6ff); */
+            background-image: linear-gradient(60deg, #ff9966, #ff5e62);
+            /* background-image: linear-gradient(60deg, #7f00ff, #e100ff); */
+            /* background-image: linear-gradient(60deg, #f6d365, #fda085); */
+/* background-image: linear-gradient(60deg, #43c6ac, #191654); */
+/* background-image: linear-gradient(60deg, #cfd9df, #e2ebf0); */
+/* background-image: linear-gradient(60deg, #f9f9f9, #f5f7fa, #cfd9df); */
+/* background-image: linear-gradient(60deg, #ff9a9e, #fecfef, #feada6); */
+/* background-image: linear-gradient(60deg, #ffecd2, #fcb69f, #ff9a9e); */
+/* background-image: linear-gradient(60deg, #a8edea, #fed6e3, #fbc2eb); */
+/* background-image: linear-gradient(60deg, #84fab0, #8fd3f4, #8ec5fc); */
+/* background-image: linear-gradient(60deg, #c1dfc4, #deecdd, #97c1a9); */
+/* background-image: linear-gradient(60deg, #d4fc79, #96e6a1, #4caf50); */
+                /* background-image: linear-gradient(60deg, #6a11cb, #2575fc, #1b1b1b); */
+/* background-image: linear-gradient(60deg, #ff758c, #ff7eb3, #ff9898); */
+/* background-image: linear-gradient(60deg, #ffafbd, #ffc3a0, #ff9a9e); */
 
     color: white !important;
+
+    /* animation: bg-animation 5s infinite alternate; */
 }
+
+/* @keyframes bg-animation {
+    0% {
+        background-position: left;
+    }
+
+    100% {
+        background-position: right;
+    }
+} */
 
 /* .column{
     border: solid 1px;
@@ -38,6 +75,9 @@ body {
     border: solid 1px !important;
     border-color: #00008B !important;
     margin-top: 15px;
+
+    background-color: slateblue !important;
+    color: white !important;
 }
 
 #todo-container>div>button {
@@ -93,15 +133,27 @@ body {
 #task-action-button-container{
     display: flex;
     flex-direction: column;
-    position: relative;
-    left: 10px;
+    position: absolute;
+    top: 40px;
+    right: 10px;
 }
 
+/* #task-action-toggle-button{
+    width: 10px;
+} */
+
 .task-action-button{
-    padding: 2px;
-    margin: 2px;
-    background-color: #00008B;
+    padding: 8px;
+    margin: 3px;
+    background-color: orange;
     color: white;
     border: none;
-    border-radius: 4%;
+    border-radius: 20%;
+    opacity: 0.8;
+}
+
+#task-card-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
