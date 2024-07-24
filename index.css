@@ -1,51 +1,26 @@
 * {
     margin: 0;
     padding: 0;
-
 }
 
 body {
     min-height: 100vh;
-    /* background-image: linear-gradient( 135deg, #FFF720 10%, #3CD500 100%);  */
-    /* color: white !important; */
-    /* background-image: radial-gradient( circle 400px at 6.8% 8.3%,  rgba(255,244,169,1) 0%, rgba(255,244,234,1) 100.2% );     */
-    /* animation: bg-animation 5s infinite alternate; */
-
-    /* background-image: radial-gradient( circle 879px at 10.4% 22.3%,  rgba(255,235,238,1) 0%, rgba(186,190,245,1) 93.6% ); */
-
-    /* background-image: radial-gradient( circle farthest-corner at -8.9% 51.2%,  rgba(255,124,0,1) 0%, rgba(255,124,0,1) 15.9%, rgba(255,163,77,1) 15.9%, rgba(255,163,77,1) 24.4%, rgba(19,30,37,1) 24.5%, rgba(19,30,37,1) 66% ); */
-
-    /* background-image: linear-gradient( 109.6deg,  rgba(119,44,232,0.68) 11.5%, rgba(119,44,232,1) 91.2% ); */
 
     background-color: #fffde7 !important;
 }
 
-/* @keyframes bg-animation {
-    0% {
-        
-    }
-
-    100% {
-       
-    }
-} */
-
-
 .column-content {
-    /* border: solid 1px; */
-    border-radius: 5%;
-    padding-top: 10px;
-    padding-bottom: 15px;
-    /* background-color: whitesmoke; */
     background-color: #f9fbe7;
     color: white;
-    
+
+    border-radius: 5%;
+
+    padding-top: 10px;
+    padding-bottom: 15px;
 
     max-height: 100vh;
     overflow-y: auto;
 }
-
-
 
 .column-header {
     display: flex;
@@ -54,13 +29,17 @@ body {
 
     background-color: #303f9f;
     color: white;
+
     padding: 10px;
+
     border-radius: 20px;
 }
 
 .column-header .text-center {
     margin: 0 auto;
+
     flex-grow: 1;
+
     text-align: center;
 }
 
@@ -69,24 +48,36 @@ body {
 }
 
 .task-card {
-    /* border: solid 1px !important; */
-    /* border-color: #00008B !important; */
-    /* margin-top: 15px; */
-
-    /* background-color: slateblue !important; */
-    /* color: white !important; */
-
-
     background-color: #ffffff;
+
     padding: 15px;
     margin: 10px 0;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
+    border-radius: 5px;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .highlight {
-    background-color: yellow !important; /* Highlight color */
+    background-color: yellow !important;
+}
+
+.task-card .assignee {
+    font-weight: bold;
+    color: #00796b;
+}
+
+.task-card .priority {
+    font-weight: bold;
+    color: #ff7043;
+}
+
+.task-card .due-date {
+    color: #303f9f;
+}
+
+.task-card .card-title{
+    color: #303f9f;
 }
 
 #todo-container>div>button {
@@ -95,21 +86,20 @@ body {
 
 
 #create-task-form-container {
-    /* color: white;
-    background-color:#800080; */
     padding: 50px 70px 40px 70px;
-    position: absolute;
+
     width: 50%;
+
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
 
-
     background-color: #ffffff;
-    /* background-color: red; */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
+    border-radius: 10px;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #new-task-form button{
@@ -117,14 +107,14 @@ body {
     color: white;
 }
 
-/* VALIDATION ERROR EFFECT */
-
 .message{
     background-color: seagreen;
     color: white;
-    /* font-size: 20px; */
+
     padding: 10px 20px;
+
     border-radius: 10px;
+
     animation: slideIn 2s ease;
 
 }
@@ -133,20 +123,10 @@ body {
     background-color: orange;
 }
 
-/* When the .inactive class is removed, the error message will appear */
 #form-message {
-    /* background-color: seagreen;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    position: absolute; */
-
     position: absolute;
-
-
     right: 5px;
     bottom: 5px;
-
 }
 
 #app-message{
@@ -161,21 +141,12 @@ body {
     left:5px;
 }
 
-#remove-message{
-    /* position: absolute;
-    top:5px;
-    left:5px; */
-}
-
 @keyframes slideIn {
     0% {
         opacity: 0;
         transform: translateX(-10%);
     }
-    /* 50% {
-        opacity: 0.5;
-        transform: translateX(-10%);
-    } */
+
     100% {
         opacity: 1;
         transform: translateX(0);
@@ -190,7 +161,9 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
+
     border: none;
+
     cursor: pointer;
 }
 
@@ -201,39 +174,33 @@ body {
 .task-action-button-container{
     display: flex;
     flex-direction: column;
+
     position: absolute;
     top: 50px;
     right: 10px;
 
     background-color: #ffffff;
-    /* border-radius: 10px; */
+
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .task-action-button{
-     /* background-color: #303f9f; */
-    /* color: black; */
-    
     padding: 4px 10px;
-    /* margin: 3px; */
-   
+    color: #00796b;
     border: none;
-    /* border-radius: 20%; */
 }
 
 .task-action-button:hover{
     background-color: #303f9f;
     color: white;
 }
+
 .task-card-header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-
-
-/* RESPONSE ON DIFFERENT SCREEN SIZE */
 @media (max-width:992px) {
     #done-container{
         margin-top: 20px;
@@ -250,7 +217,31 @@ body {
     }
 
     #create-task-form-container{
+        width: 90%;
+        padding: 30px 30px 50px 30px;
+    }
+
+    .message{
         width: 80%;
-        padding: 30px 40px 30px 40px;
+        padding: 10px 15px;
+        border-radius: 5px;    
+    }
+
+    #form-message {
+        position: absolute;
+        right: 2px;
+        bottom: 2px;
+    }
+    
+    #app-message{
+        position: absolute;
+        right: 2px;
+        top: 5px;
+    }
+
+    .remove-message{
+        position: absolute;
+        top:2px;
+        left:2px;
     }
 }

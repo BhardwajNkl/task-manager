@@ -46,54 +46,54 @@ function removeTask(taskCardElementId) {
 }
 
 
-export function showFormMessage(message, isError){
+export function showFormMessage(message, isError) {
     const formMessageElement = document.getElementById("form-message");
 
     // remove error class if it is already present
-    if(formMessageElement.classList.contains("error")){
+    if (formMessageElement.classList.contains("error")) {
         formMessageElement.classList.remove("error");
     }
 
     formMessageElement.querySelector("span").textContent = message;
-        formMessageElement.classList.remove("inactive");
-        if(isError){
-            formMessageElement.classList.add("error");
+    formMessageElement.classList.remove("inactive");
+    if (isError) {
+        formMessageElement.classList.add("error");
 
-        }
+    }
 
-        // also add listner on the remove error icon
-        // EVENT BINDING ON REMOVE-ERROR BUTTON
-        document.getElementById("remove-form-message").addEventListener("click", () => {
-            formMessageElement.querySelector("span").textContent = "";
-            formMessageElement.classList.remove("error");
-            formMessageElement.classList.add("inactive");
-        });
+    // also add listner on the remove error icon
+    // EVENT BINDING ON REMOVE-ERROR BUTTON
+    document.getElementById("remove-form-message").addEventListener("click", () => {
+        formMessageElement.querySelector("span").textContent = "";
+        formMessageElement.classList.remove("error");
+        formMessageElement.classList.add("inactive");
+    });
 }
 
 
-export function showAppMessage(message, isError){
+export function showAppMessage(message, isError) {
     const appMessage = document.getElementById("app-message");
 
 
     // remove error class if it is already present
-    if(appMessage.classList.contains("error")){
+    if (appMessage.classList.contains("error")) {
         appMessage.classList.remove("error");
     }
 
-        // console.log(appMessage);
-        appMessage.querySelector("span").textContent = message;
-        appMessage.classList.remove("inactive");
+    appMessage.querySelector("span").textContent = message;
+    appMessage.classList.remove("inactive");
 
-        if(isError){
-            appMessage.classList.add("error");
-        }
-        // also add listner on the remove error icon
-        // EVENT BINDING ON REMOVE-ERROR BUTTON
-        document.getElementById("remove-app-message").addEventListener("click", () => {
-            appMessage.querySelector("span").textContent = "";
-            appMessage.classList.remove("error");
-            appMessage.classList.add("inactive");
-        })
+    if (isError) {
+        appMessage.classList.add("error");
+    }
+
+    // also add listner on the remove error icon
+    // EVENT BINDING ON REMOVE-ERROR BUTTON
+    document.getElementById("remove-app-message").addEventListener("click", () => {
+        appMessage.querySelector("span").textContent = "";
+        appMessage.classList.remove("error");
+        appMessage.classList.add("inactive");
+    })
 }
 
 
@@ -131,9 +131,9 @@ export function showTaskOnPage(task) {
                                     </div>
 
                                     <p class="card-text">${task.description}</p>
-                                    <span>Assigned To:${task.assignee}</span><br>
-                                    <span>${shortDueDate}</span>
-                                    <span>${task.priority}</span>
+                                    <span class="assignee">Assignee: ${task.assignee}</span><br>
+                                    <span class="priority">Priority: ${task.priority}</span><br>
+                                    <span class="due-date">Due Date: ${shortDueDate}</span>
                                 </div>
                             <div> 
                         </div>`;
@@ -143,7 +143,6 @@ export function showTaskOnPage(task) {
     cutButton.className = "task-action-button";
     cutButton.textContent = "Cut";
     cutButton.addEventListener("click", function () {
-        // console.log("cut on[currently operation not coded]: ", task.title);
         cut(task.title);
     });
 
@@ -154,7 +153,7 @@ export function showTaskOnPage(task) {
     deleteButton.addEventListener("click", function () {
         deleteTask(task.title);
         removeTask(task.title);
-        // show in app message
+        // show app message
         showAppMessage("Task deleted successfully!", false);
 
     });
@@ -164,7 +163,7 @@ export function showTaskOnPage(task) {
     buttonContainer.appendChild(cutButton);
     buttonContainer.appendChild(deleteButton);
 
-    // EVENT LISTENER FOR SHOWING/HIDING THE EDIT/DELETE BUTTONS
+    // EVENT LISTENER FOR SHOWING/HIDING THE CUT/DELETE BUTTONS
     const taskActionToggleButton = newCard.querySelector(".task-action-toggle-button");
     taskActionToggleButton.addEventListener("click", () => {
         const taskActionButtonContainer = newCard.querySelector(".task-action-button-container");
@@ -196,7 +195,7 @@ export function highlightMatchingTask(searchText) {
         const title = titleElement.textContent.toLocaleLowerCase();
         if (searchText.length > 0 && title.includes(searchText)) {
             taskCardElement.classList.add("highlight");
-            matchCount+=1;
+            matchCount += 1;
         } else if (searchText.length > 0 && !title.includes(searchText)) {
             taskCardElement.classList.remove("highlight");
         } else {
@@ -204,9 +203,9 @@ export function highlightMatchingTask(searchText) {
         }
     });
 
-    if(searchText.length>0 && matchCount){
-        showAppMessage(matchCount.toString()+" Task(s) found!", false);
-    } else if(searchText.length>0){
+    if (searchText.length > 0 && matchCount) {
+        showAppMessage(matchCount.toString() + " Task(s) found!", false);
+    } else if (searchText.length > 0) {
         showAppMessage("No match found!", true);
     }
 }
@@ -226,33 +225,15 @@ export function clearCreateTaskForm() {
 }
 
 export function validateTaskTitle(title) {
-    // validate the title: should be non-empty and unique
+    // the title should be non-empty and unique
     if (title.length === 0) {
         showFormMessage("Title cannot be empty!", true);
         return false;
     }
 
     if (taskExistsByTitle(title)) {
-        // // console.log("task with given title already exists");
-        // formMessageElement.querySelector("span").textContent = "Task with given title already exists!"
-        // formMessageElement.classList.remove("inactive");
-        // formMessageElement.classList.add("error");
-
-        // // also add listner on the remove error icon
-        // // EVENT BINDING ON REMOVE-ERROR BUTTON
-        // document.getElementById("remove-form-message").addEventListener("click", () => {
-        //     formMessageElement.querySelector("span").textContent = "";
-        //     formMessageElement.classList.remove("error");
-        //     formMessageElement.classList.add("inactive");
-        // })
-
         showFormMessage("Task with given title already exists!", true);
         return false;
     }
-
-    // formMessageElement.classList.add("inactive");
-    // formMessageElement.classList.remove("error");
-
-    // formMessageElement.querySelector("span").textContent = "";
     return true;
 }

@@ -7,7 +7,7 @@
 
 import { loadTasks, updateTaskStatus, createTask } from "./task.js";
 import { showTaskOnPage, toggleTaskFormVisibility, highlightMatchingTask, clearCreateTaskForm, validateTaskTitle, showFormMessage } from "./dom_manipulation.js";
-import {paste} from "./cut_paste.js";
+import { paste } from "./cut_paste.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const title = form["task-title"].value;
 
         // validate the title
-        if(!validateTaskTitle(title)){
+        if (!validateTaskTitle(title)) {
             return;
         }
 
@@ -45,38 +45,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         createTask(newTask);
 
-        // show success message in the form
-        // const formMessageElement = document.getElementById("form-message");
-        // formMessageElement.querySelector("span").textContent = "Task created successfully!"
-        // formMessageElement.classList.remove("inactive");
-
-        // // also add listner on the remove error icon
-        // // EVENT BINDING ON REMOVE-ERROR BUTTON
-        // document.getElementById("remove-form-message").addEventListener("click", () => {
-        //     formMessageElement.querySelector("span").textContent = "";
-        //     formMessageElement.classList.add("inactive");
-        // });
-
         showFormMessage("Task created successfully!", false);
-
-        
-
 
         showTaskOnPage(newTask);
     });
 
-    // EVENT BINDING ON CREATE-TASK FORM CLEAR BUTTON
-    document.getElementById("create-task-clear-button").addEventListener("click",()=>{
+    // 4. EVENT BINDING ON CREATE-TASK FORM CLEAR BUTTON
+    document.getElementById("create-task-clear-button").addEventListener("click", () => {
         clearCreateTaskForm();
     })
 
-    // EVENT BINDIN ON SEARCH INPUT
-    document.getElementById("search-task").addEventListener("input",(event)=>{
+    // 5. EVENT BINDIN ON SEARCH INPUT
+    document.getElementById("search-task").addEventListener("input", (event) => {
         const searchText = event.target.value;
         highlightMatchingTask(searchText);
     });
 
-    // 4. DRAGOVER AND DROP EVENT BINDING ON EACH TASK CONTAINER
+    // 6. DRAGOVER AND DROP EVENT BINDING ON EACH TASK CONTAINER
     const todoContainer = document.getElementById("todo-container");
     todoContainer.addEventListener("dragover", (event) => {
         event.preventDefault();
@@ -128,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
         doneContainer.appendChild(selected);
     });
 
-    // PASTE BUTTONS EVENT BINDING
+    // 7. PASTE BUTTONS EVENT BINDING
     const pasteButtons = document.querySelectorAll(".task-paste-button");
     for (const button of pasteButtons) {
         button.addEventListener("click", () => {
