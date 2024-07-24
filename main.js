@@ -6,7 +6,7 @@
  */
 
 import { loadTasks, updateTaskStatus, createTask } from "./task.js";
-import { showTaskOnPage, toggleTaskFormVisibility, highlightMatchingTask, clearCreateTaskForm, validateTaskTitle, showFormMessage } from "./dom_manipulation.js";
+import { showTaskOnPage, toggleTaskFormVisibility, highlightMatchingTask, clearCreateTaskForm, validateTaskTitle, showFormMessage, pushTaskInContainer } from "./dom_manipulation.js";
 import { paste } from "./cut_paste.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const title = titleElement.innerHTML;
         // UPDATE THE TASK STATUS ACCORDINGLY
         updateTaskStatus(title, "todo");
-        todoContainer.appendChild(selected);
+        pushTaskInContainer(selected, todoContainer);
     });
 
     const doingContainer = document.getElementById("doing-container");
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const title = titleElement.innerHTML;
         // NOTE: UPDATE THE TASK STATUS ACCORDINGLY
         updateTaskStatus(title, "doing");
-        doingContainer.appendChild(selected);
+        pushTaskInContainer(selected, doingContainer);
     });
 
     const doneContainer = document.getElementById("done-container");
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const title = titleElement.innerHTML;
         // NOTE: UPDATE THE TASK STATUS ACCORDINGLY
         updateTaskStatus(title, "done");
-        doneContainer.appendChild(selected);
+        pushTaskInContainer(selected, doneContainer);
     });
 
     // 7. PASTE BUTTONS EVENT BINDING

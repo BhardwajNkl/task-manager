@@ -1,6 +1,6 @@
 
 import { updateTaskStatus } from "./task.js";
-import { showAppMessage } from "./dom_manipulation.js";
+import { showAppMessage, pushTaskInContainer } from "./dom_manipulation.js";
 let selectedElementId = null;
 
 export const cut = (elementId) => {
@@ -38,7 +38,7 @@ export const paste = (targetContainerId) => {
             }
         }
 
-        targetContainer.appendChild(cutElement);
+        pushTaskInContainer(cutElement, targetContainer);
         showAppMessage("Task moved successfully!", false);
         selectedElementId = null;
     } else {

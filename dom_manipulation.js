@@ -17,25 +17,65 @@ export function toggleTaskFormVisibility() {
     }
 }
 
-function appendTaskInContainer(taskCardElement, taskStatus) {
-    switch (taskStatus) {
-        case "todo": {
-            document.querySelector("#todo-container").appendChild(taskCardElement);
+export function pushTaskInContainer(taskCardElement, containerElement) {
+    switch (containerElement.getAttribute("id")) {
+        case "todo-container": {
+            // push as 2nd child. because create-task button is the first child
+            if (containerElement.children.length > 1) {
+                containerElement.insertBefore(taskCardElement, containerElement.children[1]);
+            } else {
+                containerElement.appendChild(taskCardElement);
+            }
             break;
         }
-        case "doing": {
-            document.querySelector("#doing-container").appendChild(taskCardElement);
+        case "doing-container": {
+            // push as first child
+            if (containerElement.firstChild) {
+                containerElement.insertBefore(taskCardElement, containerElement.firstChild);
+            } else {
+                containerElement.appendChild(taskCardElement);
+            }
             break;
         }
-        case "done": {
-            document.querySelector("#done-container").appendChild(taskCardElement);
+        case "done-container": {
+            // push as first child
+            if (containerElement.firstChild) {
+                containerElement.insertBefore(taskCardElement, containerElement.firstChild);
+            } else {
+                containerElement.appendChild(taskCardElement);
+            }
             break;
         }
 
         default: {
-            document.querySelector("#todo-container").appendChild(taskCardElement);
+
         }
     }
+}
+
+function pushTaskHelper(taskCardElement, taskStatus) {
+    let containerElement = null;
+    switch (taskStatus) {
+        case "todo": {
+            containerElement = document.querySelector("#todo-container");
+            break;
+        }
+        case "doing": {
+            containerElement = document.querySelector("#doing-container");
+            break;
+        }
+        case "done": {
+            containerElement = document.querySelector("#done-container");
+            break;
+        }
+
+        default: {
+            containerElement = document.querySelector("#todo-container");
+        }
+    }
+
+    pushTaskInContainer(taskCardElement, containerElement);
+
 }
 
 function removeTask(taskCardElementId) {
@@ -177,8 +217,8 @@ export function showTaskOnPage(task) {
         event.dataTransfer.setData("text/plain", task.title);
     });
 
-    // APPEND THIS TASK TO DOM
-    appendTaskInContainer(newCard, task.status);
+    // APPEND THIS TASK TO DOM. The below function first finds the target container and then calls the actual pushTaskInContainer function.
+    pushTaskHelper(newCard, task.status);
 }
 
 
