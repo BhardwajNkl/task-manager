@@ -1,10 +1,10 @@
-// dummy data to get started
+// generated dummy data to get started
 export let dummyTasks = [
     {
         title: "Complete Project Report",
         description: "Compile and finalize the quarterly project report for the management meeting.",
         dueDate: new Date(),
-        priority: "high",
+        priority: "High",
         assignee: "Alice",
         status: "todo"
     },
@@ -12,7 +12,7 @@ export let dummyTasks = [
         title: "Client Meeting",
         description: "Schedule and prepare for the client meeting to discuss project requirements and expectations.",
         dueDate: new Date(),
-        priority: "medium",
+        priority: "Medium",
         assignee: "Bob",
         status: "done"
     },
@@ -20,7 +20,7 @@ export let dummyTasks = [
         title: "Code Review",
         description: "Review the latest code commits and provide feedback to the development team.",
         dueDate: new Date(),
-        priority: "low",
+        priority: "Low",
         assignee: "Charlie",
         status: "todo"
     },
@@ -30,7 +30,7 @@ export let dummyTasks = [
         dueDate: new Date(),
         priority: "medium",
         assignee: "David",
-        status: "doing"
+        status: "Doing"
     }
 ];
 

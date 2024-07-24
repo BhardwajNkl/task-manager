@@ -76,7 +76,7 @@ body {
     color: #303f9f;
 }
 
-.task-card .card-title{
+.task-card .card-title {
     color: #303f9f;
 }
 
@@ -102,12 +102,12 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-#new-task-form button{
+#new-task-form button {
     background-color: #303f9f;
     color: white;
 }
 
-.message{
+.message {
     background-color: seagreen;
     color: white;
 
@@ -129,16 +129,16 @@ body {
     bottom: 5px;
 }
 
-#app-message{
+#app-message {
     position: absolute;
     right: 20px;
     top: 5px;
 }
 
-.remove-message{
+.remove-message {
     position: absolute;
-    top:5px;
-    left:5px;
+    top: 5px;
+    left: 5px;
 }
 
 @keyframes slideIn {
@@ -153,7 +153,7 @@ body {
     }
 }
 
-.inactive{
+.inactive {
     display: none !important;
 }
 
@@ -167,11 +167,11 @@ body {
     cursor: pointer;
 }
 
-.task-action-div{
+.task-action-div {
     display: flex;
 }
 
-.task-action-button-container{
+.task-action-button-container {
     display: flex;
     flex-direction: column;
 
@@ -184,47 +184,37 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.task-action-button{
+.task-action-button {
     padding: 4px 10px;
     color: #00796b;
     border: none;
 }
 
-.task-action-button:hover{
+.task-action-button:hover {
     background-color: #303f9f;
     color: white;
 }
 
-.task-card-header{
+.task-card-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-@media (max-width:992px) {
-    #done-container{
-        margin-top: 20px;
-    }
-
-    #create-task-form-container{
-        width: 70%;
-    }
-}
-
 @media (max-width:574px) {
-    #doing-container{
+    #doing-container {
         margin-top: 20px;
     }
 
-    #create-task-form-container{
+    #create-task-form-container {
         width: 90%;
         padding: 30px 30px 50px 30px;
     }
 
-    .message{
+    .message {
         width: 80%;
         padding: 10px 15px;
-        border-radius: 5px;    
+        border-radius: 5px;
     }
 
     #form-message {
@@ -232,16 +222,26 @@ body {
         right: 2px;
         bottom: 2px;
     }
-    
-    #app-message{
+
+    #app-message {
         position: absolute;
         right: 2px;
         top: 5px;
     }
 
-    .remove-message{
+    .remove-message {
         position: absolute;
-        top:2px;
-        left:2px;
+        top: 2px;
+        left: 2px;
+    }
+}
+
+@media (max-width:992px) {
+    #done-container {
+        margin-top: 20px;
+    }
+
+    #create-task-form-container {
+        width: 70%;
     }
 }
