@@ -6,7 +6,7 @@
  */
 
 import { loadTasks, updateTaskStatus, createTask } from "./task.js";
-import { showTaskOnPage, toggleTaskFormVisibility, highlightMatchingTask, clearCreateTaskForm } from "./dom_manipulation.js";
+import { showTaskOnPage, toggleTaskFormVisibility, highlightMatchingTask, clearCreateTaskForm, validateTaskTitle } from "./dom_manipulation.js";
 import {paste} from "./cut_paste.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,6 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("create-task-submit-button").addEventListener("click", () => {
         const form = document.getElementById("new-task-form");
         const title = form["task-title"].value;
+
+        // validate the title
+        if(!validateTaskTitle(title)){
+            return;
+        }
+
         const description = form["task-description"].value;
         const assignee = form["task-assignee"].value;
         const dueDate = form["task-due-date"].value;

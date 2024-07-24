@@ -30,3 +30,8 @@ export function deleteTask(taskTitle) {
     localStorage.setItem("task_list", JSON.stringify(tasks));
 }
 
+export function taskExistsByTitle(taskTitle){
+    const result = tasks.find(task=>task.title===taskTitle);
+    if(result) return true;
+    return false;
+}

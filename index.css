@@ -97,7 +97,7 @@ body {
 #create-task-form-container {
     /* color: white;
     background-color:#800080; */
-    padding: 50px 70px 50px 70px;
+    padding: 50px 70px 40px 70px;
     position: absolute;
     width: 50%;
     left: 50%;
@@ -106,6 +106,7 @@ body {
 
 
     background-color: #ffffff;
+    /* background-color: red; */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
@@ -114,6 +115,44 @@ body {
 #new-task-form button{
     background-color: #303f9f;
     color: white;
+}
+
+/* VALIDATION ERROR EFFECT */
+
+
+/* When the .inactive class is removed, the error message will appear */
+#form-error {
+    background-color: orange;
+    color: white;
+    /* font-size: 20px; */
+    padding: 10px 20px;
+    border-radius: 10px;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+
+    animation: slideIn 2s ease;
+}
+
+#remove-error-message{
+    position: absolute;
+    top:5px;
+    left:5px;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-10%);
+    }
+    /* 50% {
+        opacity: 0.5;
+        transform: translateX(-10%);
+    } */
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .inactive{

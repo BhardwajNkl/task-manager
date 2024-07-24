@@ -1,5 +1,5 @@
-import { deleteTask } from "./task.js";
-import {cut} from "./cut_paste.js";
+import { deleteTask, taskExistsByTitle } from "./task.js";
+import { cut } from "./cut_paste.js";
 
 export function toggleTaskFormVisibility() {
     const createTaskFormContainer = document.getElementById("create-task-form-container");
@@ -125,33 +125,62 @@ export function showTaskOnPage(task) {
 }
 
 
-export function highlightMatchingTask(searchText){
+export function highlightMatchingTask(searchText) {
     // searching based on title
     const taskCardElements = document.querySelectorAll(".task-card");
-    taskCardElements.forEach(taskCardElement=>{
+    taskCardElements.forEach(taskCardElement => {
         // get title element
         const titleElement = taskCardElement.querySelector(".card-title");
         const title = titleElement.textContent.toLocaleLowerCase();
-        if(searchText.length>0 && title.includes(searchText)){
+        if (searchText.length > 0 && title.includes(searchText)) {
             taskCardElement.classList.add("highlight");
-        } else if(searchText.length>0 && !title.includes(searchText)){
+        } else if (searchText.length > 0 && !title.includes(searchText)) {
             taskCardElement.classList.remove("highlight");
-        } else{
+        } else {
             taskCardElement.classList.remove("highlight");
         }
     })
 }
 
 
-export function clearCreateTaskForm(){
+export function clearCreateTaskForm() {
     const form = document.querySelector("#new-task-form");
     const formControls = form.querySelectorAll("[name]");
-    formControls.forEach(formControl=>{
-        if(formControl.tagName==="SELECT"){
-            formControl.value="low";
+    formControls.forEach(formControl => {
+        if (formControl.tagName === "SELECT") {
+            formControl.value = "low";
         }
-        else{
+        else {
             formControl.value = "";
         }
     })
+}
+
+export function validateTaskTitle(title) {
+    // validate the title: should be non-empty and unique
+    const formErrorElement = document.getElementById("form-error");
+    if (title.length === 0) {
+        formErrorElement.querySelector("span").textContent = "Title cannot be empty!"
+        formErrorElement.classList.remove("inactive");
+
+        // also add listner on the remove error icon
+        // EVENT BINDING ON REMOVE-ERROR BUTTON
+        document.getElementById("remove-error-message").addEventListener("click", () => {
+            formErrorElement.querySelector("span").textContent = "";
+            formErrorElement.classList.add("inactive");
+        })
+
+        return false;
+    }
+
+    if (taskExistsByTitle(title)) {
+        console.log("task with given title already exists");
+        formErrorElement.querySelector("span").textContent = "Task with given title already exists!"
+        formErrorElement.classList.remove("inactive");
+        return false;
+    }
+
+    formErrorElement.classList.add("inactive");
+    formErrorElement.querySelector("span").textContent = "";
+    return true;
 }
