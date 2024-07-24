@@ -186,6 +186,7 @@ export function showTaskOnPage(task) {
 
 
 export function highlightMatchingTask(searchText) {
+    searchText = searchText.toLocaleLowerCase();
     // searching based on title
     const taskCardElements = document.querySelectorAll(".task-card");
     let matchCount = 0; // for showing to user
