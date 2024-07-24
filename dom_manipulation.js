@@ -2,6 +2,13 @@ import { deleteTask, taskExistsByTitle } from "./task.js";
 import { cut } from "./cut_paste.js";
 
 export function toggleTaskFormVisibility() {
+    // first of all, let's remove form-message if it is present
+    const formMessageElement = document.getElementById("form-message");
+    formMessageElement.querySelector("span").textContent = "";
+    formMessageElement.classList.remove("error"); // in case error class is added
+    formMessageElement.classList.add("inactive");
+
+    // now remove the form container
     const createTaskFormContainer = document.getElementById("create-task-form-container");
     if (createTaskFormContainer.classList.contains("inactive")) {
         createTaskFormContainer.classList.remove("inactive");
@@ -158,29 +165,42 @@ export function clearCreateTaskForm() {
 
 export function validateTaskTitle(title) {
     // validate the title: should be non-empty and unique
-    const formErrorElement = document.getElementById("form-error");
+    const formMessageElement = document.getElementById("form-message");
     if (title.length === 0) {
-        formErrorElement.querySelector("span").textContent = "Title cannot be empty!"
-        formErrorElement.classList.remove("inactive");
+        formMessageElement.querySelector("span").textContent = "Title cannot be empty!"
+        formMessageElement.classList.remove("inactive");
+        formMessageElement.classList.add("error");
 
         // also add listner on the remove error icon
         // EVENT BINDING ON REMOVE-ERROR BUTTON
-        document.getElementById("remove-error-message").addEventListener("click", () => {
-            formErrorElement.querySelector("span").textContent = "";
-            formErrorElement.classList.add("inactive");
+        document.getElementById("remove-message").addEventListener("click", () => {
+            formMessageElement.querySelector("span").textContent = "";
+            formMessageElement.classList.add("inactive");
         })
 
         return false;
     }
 
     if (taskExistsByTitle(title)) {
-        console.log("task with given title already exists");
-        formErrorElement.querySelector("span").textContent = "Task with given title already exists!"
-        formErrorElement.classList.remove("inactive");
+        // console.log("task with given title already exists");
+        formMessageElement.querySelector("span").textContent = "Task with given title already exists!"
+        formMessageElement.classList.remove("inactive");
+        formMessageElement.classList.add("error");
+
+        // also add listner on the remove error icon
+        // EVENT BINDING ON REMOVE-ERROR BUTTON
+        document.getElementById("remove-message").addEventListener("click", () => {
+            formMessageElement.querySelector("span").textContent = "";
+            formMessageElement.classList.add("inactive");
+        })
+
+
         return false;
     }
 
-    formErrorElement.classList.add("inactive");
-    formErrorElement.querySelector("span").textContent = "";
+    formMessageElement.classList.add("inactive");
+    formMessageElement.classList.remove("error");
+
+    formMessageElement.querySelector("span").textContent = "";
     return true;
 }

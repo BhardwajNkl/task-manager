@@ -44,6 +44,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const newTask = { title, description, assignee, dueDate: new Date(dueDate), priority, status: "todo" };
 
         createTask(newTask);
+
+        // show success message in the form
+        const formMessageElement = document.getElementById("form-message");
+        formMessageElement.querySelector("span").textContent = "Task created successfully!"
+        formMessageElement.classList.remove("inactive");
+
+        // also add listner on the remove error icon
+        // EVENT BINDING ON REMOVE-ERROR BUTTON
+        document.getElementById("remove-message").addEventListener("click", () => {
+            formMessageElement.querySelector("span").textContent = "";
+            formMessageElement.classList.add("inactive");
+        });
+
+
         showTaskOnPage(newTask);
     });
 

@@ -121,8 +121,8 @@ body {
 
 
 /* When the .inactive class is removed, the error message will appear */
-#form-error {
-    background-color: orange;
+#form-message {
+    background-color: seagreen;
     color: white;
     /* font-size: 20px; */
     padding: 10px 20px;
@@ -134,7 +134,11 @@ body {
     animation: slideIn 2s ease;
 }
 
-#remove-error-message{
+#form-message.error {
+    background-color: orange;
+}
+
+#remove-message{
     position: absolute;
     top:5px;
     left:5px;
