@@ -140,5 +140,18 @@ export function highlightMatchingTask(searchText){
             taskCardElement.classList.remove("highlight");
         }
     })
+}
 
+
+export function clearCreateTaskForm(){
+    const form = document.querySelector("#new-task-form");
+    const formControls = form.querySelectorAll("[name]");
+    formControls.forEach(formControl=>{
+        if(formControl.tagName==="SELECT"){
+            formControl.value="low";
+        }
+        else{
+            formControl.value = "";
+        }
+    })
 }

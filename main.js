@@ -6,7 +6,7 @@
  */
 
 import { loadTasks, updateTaskStatus, createTask } from "./task.js";
-import { showTaskOnPage, toggleTaskFormVisibility, highlightMatchingTask } from "./dom_manipulation.js";
+import { showTaskOnPage, toggleTaskFormVisibility, highlightMatchingTask, clearCreateTaskForm } from "./dom_manipulation.js";
 import {paste} from "./cut_paste.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -40,6 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
         createTask(newTask);
         showTaskOnPage(newTask);
     });
+
+    // EVENT BINDING ON CREATE-TASK FORM CLEAR BUTTON
+    document.getElementById("create-task-clear-button").addEventListener("click",()=>{
+        clearCreateTaskForm();
+    })
 
     // EVENT BINDIN ON SEARCH INPUT
     document.getElementById("search-task").addEventListener("input",(event)=>{
