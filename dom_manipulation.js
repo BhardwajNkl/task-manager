@@ -61,8 +61,7 @@ export function showFormMessage(message, isError) {
 
     }
 
-    // also add listner on the remove error icon
-    // EVENT BINDING ON REMOVE-ERROR BUTTON
+    // also add listner on the remove message icon
     document.getElementById("remove-form-message").addEventListener("click", () => {
         formMessageElement.querySelector("span").textContent = "";
         formMessageElement.classList.remove("error");
@@ -87,8 +86,7 @@ export function showAppMessage(message, isError) {
         appMessage.classList.add("error");
     }
 
-    // also add listner on the remove error icon
-    // EVENT BINDING ON REMOVE-ERROR BUTTON
+    // also add listner on the remove message icon
     document.getElementById("remove-app-message").addEventListener("click", () => {
         appMessage.querySelector("span").textContent = "";
         appMessage.classList.remove("error");
@@ -100,7 +98,7 @@ export function showAppMessage(message, isError) {
 export function showTaskOnPage(task) {
     task.dueDate = new Date(task.dueDate);
     let day = task.dueDate.getDate();
-    let month = task.dueDate.getMonth() + 1; // Months are zero-based, so add 1
+    let month = task.dueDate.getMonth() + 1;
     let year = task.dueDate.getFullYear();
     day = day < 10 ? '0' + day : day; // ensure 2 digit format for date and month
     month = month < 10 ? '0' + month : month;
@@ -109,8 +107,8 @@ export function showTaskOnPage(task) {
 
     /**
      * LET'S CREATE A DIV FOR THIS TASK.
-     * WE ALSO PROVIDE ADD EDIT/DELETE BUTTONS TO THIS DIV.
-     * THEN, WE WILL ADD THE EVENT LISTENERS FOR TOGGLING BUTTON VISIBILITY AND ALSO FOR EDIT/DELETE OPERATIONS HERE ITSELF.
+     * WE ALSO PROVIDE ADD CUT/DELETE BUTTONS TO THIS DIV.
+     * THEN, WE WILL ADD THE EVENT LISTENERS FOR TOGGLING BUTTON VISIBILITY AND ALSO FOR CUT/DELETE OPERATIONS HERE ITSELF.
      * AND THEN FINALLY, WE APPEND THIS TASK DIV INTO A TASK CONTAINER.
      */
     let newCard = document.createElement("div");
@@ -203,6 +201,7 @@ export function highlightMatchingTask(searchText) {
         }
     });
 
+    // NEED WORK ON THIS PART: WHEN SEARCH TEXT LENGTH 0, REMOVE MATCH COUNT MESSAGE
     if (searchText.length > 0 && matchCount) {
         showAppMessage(matchCount.toString() + " Task(s) found!", false);
     } else if (searchText.length > 0) {

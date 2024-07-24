@@ -1,7 +1,7 @@
 /**
  * when document is loaded:
  *  1. load and show all available tasks
- *  2. event bind on task-create form opener and closer buttons
+ *  2. various event bindings
  *  3. enable each task container for dragover and drop events
  */
 
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         createTask(newTask);
 
-        showFormMessage("Task created successfully!", false);
+        showFormMessage("Task created successfully!", false); // false indicates that it is not an error message
 
         showTaskOnPage(newTask);
     });
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearCreateTaskForm();
     })
 
-    // 5. EVENT BINDIN ON SEARCH INPUT
+    // 5. EVENT BINDING ON SEARCH INPUT
     document.getElementById("search-task").addEventListener("input", (event) => {
         const searchText = event.target.value;
         highlightMatchingTask(searchText);
