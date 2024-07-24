@@ -119,29 +119,52 @@ body {
 
 /* VALIDATION ERROR EFFECT */
 
-
-/* When the .inactive class is removed, the error message will appear */
-#form-message {
+.message{
     background-color: seagreen;
     color: white;
     /* font-size: 20px; */
     padding: 10px 20px;
     border-radius: 10px;
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
-
     animation: slideIn 2s ease;
+
 }
 
-#form-message.error {
+.message.error {
     background-color: orange;
 }
 
-#remove-message{
+/* When the .inactive class is removed, the error message will appear */
+#form-message {
+    /* background-color: seagreen;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    position: absolute; */
+
+    position: absolute;
+
+
+    right: 5px;
+    bottom: 5px;
+
+}
+
+#app-message{
+    position: absolute;
+    right: 20px;
+    top: 5px;
+}
+
+.remove-message{
     position: absolute;
     top:5px;
     left:5px;
+}
+
+#remove-message{
+    /* position: absolute;
+    top:5px;
+    left:5px; */
 }
 
 @keyframes slideIn {

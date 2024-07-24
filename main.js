@@ -6,7 +6,7 @@
  */
 
 import { loadTasks, updateTaskStatus, createTask } from "./task.js";
-import { showTaskOnPage, toggleTaskFormVisibility, highlightMatchingTask, clearCreateTaskForm, validateTaskTitle } from "./dom_manipulation.js";
+import { showTaskOnPage, toggleTaskFormVisibility, highlightMatchingTask, clearCreateTaskForm, validateTaskTitle, showFormMessage } from "./dom_manipulation.js";
 import {paste} from "./cut_paste.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -46,16 +46,20 @@ document.addEventListener("DOMContentLoaded", () => {
         createTask(newTask);
 
         // show success message in the form
-        const formMessageElement = document.getElementById("form-message");
-        formMessageElement.querySelector("span").textContent = "Task created successfully!"
-        formMessageElement.classList.remove("inactive");
+        // const formMessageElement = document.getElementById("form-message");
+        // formMessageElement.querySelector("span").textContent = "Task created successfully!"
+        // formMessageElement.classList.remove("inactive");
 
-        // also add listner on the remove error icon
-        // EVENT BINDING ON REMOVE-ERROR BUTTON
-        document.getElementById("remove-message").addEventListener("click", () => {
-            formMessageElement.querySelector("span").textContent = "";
-            formMessageElement.classList.add("inactive");
-        });
+        // // also add listner on the remove error icon
+        // // EVENT BINDING ON REMOVE-ERROR BUTTON
+        // document.getElementById("remove-form-message").addEventListener("click", () => {
+        //     formMessageElement.querySelector("span").textContent = "";
+        //     formMessageElement.classList.add("inactive");
+        // });
+
+        showFormMessage("Task created successfully!", false);
+
+        
 
 
         showTaskOnPage(newTask);

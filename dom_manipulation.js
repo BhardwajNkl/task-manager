@@ -46,6 +46,57 @@ function removeTask(taskCardElementId) {
 }
 
 
+export function showFormMessage(message, isError){
+    const formMessageElement = document.getElementById("form-message");
+
+    // remove error class if it is already present
+    if(formMessageElement.classList.contains("error")){
+        formMessageElement.classList.remove("error");
+    }
+
+    formMessageElement.querySelector("span").textContent = message;
+        formMessageElement.classList.remove("inactive");
+        if(isError){
+            formMessageElement.classList.add("error");
+
+        }
+
+        // also add listner on the remove error icon
+        // EVENT BINDING ON REMOVE-ERROR BUTTON
+        document.getElementById("remove-form-message").addEventListener("click", () => {
+            formMessageElement.querySelector("span").textContent = "";
+            formMessageElement.classList.remove("error");
+            formMessageElement.classList.add("inactive");
+        });
+}
+
+
+export function showAppMessage(message, isError){
+    const appMessage = document.getElementById("app-message");
+
+
+    // remove error class if it is already present
+    if(appMessage.classList.contains("error")){
+        appMessage.classList.remove("error");
+    }
+
+        // console.log(appMessage);
+        appMessage.querySelector("span").textContent = message;
+        appMessage.classList.remove("inactive");
+
+        if(isError){
+            appMessage.classList.add("error");
+        }
+        // also add listner on the remove error icon
+        // EVENT BINDING ON REMOVE-ERROR BUTTON
+        document.getElementById("remove-app-message").addEventListener("click", () => {
+            appMessage.querySelector("span").textContent = "";
+            appMessage.classList.remove("error");
+            appMessage.classList.add("inactive");
+        })
+}
+
+
 export function showTaskOnPage(task) {
     task.dueDate = new Date(task.dueDate);
     let day = task.dueDate.getDate();
@@ -103,7 +154,9 @@ export function showTaskOnPage(task) {
     deleteButton.addEventListener("click", function () {
         deleteTask(task.title);
         removeTask(task.title);
-        alert("deleted!")
+        // show in app message
+        showAppMessage("Task deleted successfully!", false);
+
     });
 
     // APPEND THE BUTTONS TO THE BUTTON CONTAINER
@@ -135,18 +188,26 @@ export function showTaskOnPage(task) {
 export function highlightMatchingTask(searchText) {
     // searching based on title
     const taskCardElements = document.querySelectorAll(".task-card");
+    let matchCount = 0; // for showing to user
     taskCardElements.forEach(taskCardElement => {
         // get title element
         const titleElement = taskCardElement.querySelector(".card-title");
         const title = titleElement.textContent.toLocaleLowerCase();
         if (searchText.length > 0 && title.includes(searchText)) {
             taskCardElement.classList.add("highlight");
+            matchCount+=1;
         } else if (searchText.length > 0 && !title.includes(searchText)) {
             taskCardElement.classList.remove("highlight");
         } else {
             taskCardElement.classList.remove("highlight");
         }
-    })
+    });
+
+    if(searchText.length>0 && matchCount){
+        showAppMessage(matchCount.toString()+" Task(s) found!", false);
+    } else if(searchText.length>0){
+        showAppMessage("No match found!", true);
+    }
 }
 
 
@@ -165,42 +226,32 @@ export function clearCreateTaskForm() {
 
 export function validateTaskTitle(title) {
     // validate the title: should be non-empty and unique
-    const formMessageElement = document.getElementById("form-message");
     if (title.length === 0) {
-        formMessageElement.querySelector("span").textContent = "Title cannot be empty!"
-        formMessageElement.classList.remove("inactive");
-        formMessageElement.classList.add("error");
-
-        // also add listner on the remove error icon
-        // EVENT BINDING ON REMOVE-ERROR BUTTON
-        document.getElementById("remove-message").addEventListener("click", () => {
-            formMessageElement.querySelector("span").textContent = "";
-            formMessageElement.classList.add("inactive");
-        })
-
+        showFormMessage("Title cannot be empty!", true);
         return false;
     }
 
     if (taskExistsByTitle(title)) {
-        // console.log("task with given title already exists");
-        formMessageElement.querySelector("span").textContent = "Task with given title already exists!"
-        formMessageElement.classList.remove("inactive");
-        formMessageElement.classList.add("error");
+        // // console.log("task with given title already exists");
+        // formMessageElement.querySelector("span").textContent = "Task with given title already exists!"
+        // formMessageElement.classList.remove("inactive");
+        // formMessageElement.classList.add("error");
 
-        // also add listner on the remove error icon
-        // EVENT BINDING ON REMOVE-ERROR BUTTON
-        document.getElementById("remove-message").addEventListener("click", () => {
-            formMessageElement.querySelector("span").textContent = "";
-            formMessageElement.classList.add("inactive");
-        })
+        // // also add listner on the remove error icon
+        // // EVENT BINDING ON REMOVE-ERROR BUTTON
+        // document.getElementById("remove-form-message").addEventListener("click", () => {
+        //     formMessageElement.querySelector("span").textContent = "";
+        //     formMessageElement.classList.remove("error");
+        //     formMessageElement.classList.add("inactive");
+        // })
 
-
+        showFormMessage("Task with given title already exists!", true);
         return false;
     }
 
-    formMessageElement.classList.add("inactive");
-    formMessageElement.classList.remove("error");
+    // formMessageElement.classList.add("inactive");
+    // formMessageElement.classList.remove("error");
 
-    formMessageElement.querySelector("span").textContent = "";
+    // formMessageElement.querySelector("span").textContent = "";
     return true;
 }

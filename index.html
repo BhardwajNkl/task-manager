@@ -21,7 +21,12 @@
                 TaskManager
             </span>
             <div class="d-flex">
-                <input id="search-task" class="form-control me-3" type="search" placeholder="Search" aria-label="Search">
+                <input id="search-task" class="form-control me-3" placeholder="Search" aria-label="Search">
+            </div>
+            <!-- below div for showing important messages. -->
+            <div id="app-message" class="message inactive">
+                <span id="app-message-text">app message</span>
+                <i id="remove-app-message" class="fa-solid fa-xmark remove-message"></i>
             </div>
         </div>
     </nav>
@@ -59,9 +64,9 @@
                     <button type="button" id="create-task-clear-button" class="btn btn-sm ms-2">Clear</button>
                 </div>
             </form>
-            <div id="form-message" class="inactive">
-                <span id="message"></span>
-                <i id="remove-message" class="fa-solid fa-xmark"></i>
+            <div id="form-message" class="message inactive">
+                <span id="form-message-text"></span>
+                <i id="remove-form-message" class="remove-message fa-solid fa-xmark"></i>
             </div>
         </div>
         <div class="row">
